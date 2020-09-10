@@ -21,22 +21,22 @@ nano- 康一帅
 ### 任务目标
 要求选手根据新闻文本字符对新闻的类别进行分类，这是一个经典文本分类问题。
 ### 数据示例
-![](./imgs/0.png)
+![](https://github.com/kangyishuai/NEWS-TEXT-CLASSIFICATION/blob/master/imgs/0.png)
 ### 文本长度
 * 训练集共200,000条新闻，每条新闻平均907个字符，最短的句子长度为2，最长的句子长度为57921，其中75%以下的数据长度在1131以下。
 * 测试集共50,000条新闻，每条新闻平均909个字符，最短句子长度为14，最长句子41861,75%以下的数据长度在1133以下。
 * 训练集和测试集就长度来说似乎是同一分布。
-![](./imgs/1.png)
+![](https://github.com/kangyishuai/NEWS-TEXT-CLASSIFICATION/blob/master/imgs/1.png)
 ### 标签分布
 * 赛题的数据集类别分布存在较为不均匀的情况。在训练集中科技类新闻最多，其次是股票类新闻，最少的新闻是星座新闻。
-![](./imgs/2.png)
+![](https://github.com/kangyishuai/NEWS-TEXT-CLASSIFICATION/blob/master/imgs/2.png)
 ## 总体思路
-![](./imgs/3.png)
+![](https://github.com/kangyishuai/NEWS-TEXT-CLASSIFICATION/blob/master/imgs/3.png)
 ### 数据划分
 * 使用StratifiedKFold交叉验证。StratifiedKFold能够确保抽样后的训练集和验证集的样本分类比例和原原始数据集基本一致。
 * 利用全部数据，获得更多信息。
 * 降低方差，提高模型性能。
-![](./imgs/4.png)
+![](https://github.com/kangyishuai/NEWS-TEXT-CLASSIFICATION/blob/master/imgs/4.png)
 ### 模型设计思路
 * 由于文本长度较大，而Bert输入文本长度不能超过512（如果是自己预训练的Bert，长度可以不局限于512），所以需要进行文本截断。
 * 文本截断后，输入大小为[batch_size, max_segment, maxlen]，其中batch_size是批大小，max_segment是截断后的最大句子数量，maxlen是每个句子的最大长度。
